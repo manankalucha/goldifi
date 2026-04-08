@@ -8,6 +8,7 @@ import DateTimePicker from '@/components/booking/DateTimePicker';
 import BookingConfirmation from '@/components/booking/BookingConfirmation';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { setHours, setMinutes, format } from 'date-fns';
+import { addDocument } from '@/lib/firebase/firestore';
 import styles from './book.module.css';
 
 type Step = 1 | 2 | 3 | 4;
@@ -69,25 +70,20 @@ export default function BookPage() {
 
       const scheduledAt = setMinutes(setHours(selectedDate, hours), minutes).toISOString();
 
-      const res = await fetch('/api/appointments', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          customerName: name,
-          customerPhone: phone,
-          customerEmail: email,
-          serviceType,
-          kioskLocation: serviceType === 'kiosk' ? locationId : undefined,
-          customerAddress: serviceType === 'home' ? address : undefined,
-          scheduledAt,
-        }),
+      const docId = await addDocument('appointments', {
+        customerName: name,
+        customerPhone: phone,
+        customerEmail: email,
+        serviceType,
+        kioskLocation: serviceType === 'kiosk' ? locationId : null,
+        customerAddress: serviceType === 'home' ? address : null,
+        scheduledAt,
+        status: 'pending',
+        createdAt: new Date().toISOString(),
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Booking failed');
-
       setConfirmationData({
-        bookingId: data.id,
+        bookingId: docId,
         customerName: name,
         serviceType,
         locationId: serviceType === 'kiosk' ? locationId : undefined,
