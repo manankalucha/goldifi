@@ -116,37 +116,38 @@
 }
 
 /* Override Google Maps autocomplete dropdown to match dark theme */
-:global(.pac-container) {
+/* Must be wrapped in a local selector to satisfy CSS Modules purity rules */
+.wrapper :global(.pac-container) {
   background: #1a1a2e !important;
-  border: 1px solid var(--border, #2d2d4e) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
   border-radius: 8px !important;
   margin-top: 4px !important;
   box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
   font-family: inherit !important;
 }
 
-:global(.pac-item) {
+.wrapper :global(.pac-item) {
   padding: 10px 14px !important;
-  color: var(--text-primary, #e0e0f0) !important;
+  color: #e0e0f0 !important;
   border-top: 1px solid rgba(255,255,255,0.05) !important;
   cursor: pointer !important;
   font-size: 13px !important;
 }
 
-:global(.pac-item:hover),
-:global(.pac-item-selected) {
+.wrapper :global(.pac-item:hover),
+.wrapper :global(.pac-item-selected) {
   background: rgba(212, 160, 23, 0.1) !important;
 }
 
-:global(.pac-item-query) {
+.wrapper :global(.pac-item-query) {
   color: #d4a017 !important;
   font-size: 13px !important;
 }
 
-:global(.pac-icon) {
+.wrapper :global(.pac-icon) {
   filter: brightness(0) invert(0.7) sepia(1) saturate(2) hue-rotate(30deg) !important;
 }
 
-:global(.pac-logo) {
+.wrapper :global(.pac-logo) {
   display: none !important;
 }
