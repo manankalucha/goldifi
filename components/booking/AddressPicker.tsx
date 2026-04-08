@@ -26,7 +26,7 @@ export default function AddressPicker({ value, onChange }: Props) {
   const [locating, setLocating] = useState(false);
 
   useEffect(() => {
-    // Load the Google Maps JS API (Places)
+    // Already loaded
     if (window.google?.maps) {
       setLoaded(true);
       return;
@@ -34,15 +34,20 @@ export default function AddressPicker({ value, onChange }: Props) {
 
     window.initGoogleMaps = () => setLoaded(true);
 
-    const existingScript = document.getElementById('gmaps-script');
-    if (!existingScript) {
-      const script = document.createElement('script');
-      script.id = 'gmaps-script';
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY}&libraries=places&callback=initGoogleMaps`;
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
+    const existingScript = document.getElementById('gmaps-script') as HTMLScriptElement | null;
+    if (existingScript) {
+      // Script tag exists but may still be loading — wait for it
+      existingScript.addEventListener('load', () => setLoaded(true));
+      return;
     }
+
+    const script = document.createElement('script');
+    script.id = 'gmaps-script';
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY}&libraries=places&callback=initGoogleMaps`;
+    script.async = true;
+    script.defer = true;
+    script.onerror = () => console.error('[AddressPicker] Google Maps failed to load. Check API key & enabled APIs.');
+    document.head.appendChild(script);
   }, []);
 
   useEffect(() => {
