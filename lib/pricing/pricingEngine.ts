@@ -101,13 +101,14 @@ export const getSimulatedGoldRates = () => {
   const inrPerUsd = 84.2;
   const gramsPerTroyOz = 31.1035;
   const rate24k = (usdPerTroyOz * inrPerUsd) / gramsPerTroyOz;
-  const makingChargeFactor = 1.015; // domestic premium
+  const gstFactor = 1.03; // IBJA + 3% GST standard
 
   return {
-    rate24k: Math.round(rate24k * makingChargeFactor),
-    rate22k: Math.round(rate24k * (22 / 24) * makingChargeFactor),
-    rate18k: Math.round(rate24k * (18 / 24) * makingChargeFactor),
-    rate14k: Math.round(rate24k * (14 / 24) * makingChargeFactor),
+    rate24k: Math.round(rate24k * gstFactor),
+    rate22k: Math.round(rate24k * (22 / 24) * gstFactor),
+    rate18k: Math.round(rate24k * (18 / 24) * gstFactor),
+    rate14k: Math.round(rate24k * (14 / 24) * gstFactor),
+    rateSilver: Math.round(85 * gstFactor), // Placeholder simulated silver
     source: 'simulated' as const,
     updatedAt: new Date().toISOString(),
   };

@@ -18,8 +18,9 @@ export interface GoldRates {
   rate22k: number;
   rate18k: number;
   rate14k: number;
+  rateSilver?: number;
   updatedAt: string; // ISO string
-  source: 'simulated' | 'ibja' | 'mcx';
+  source: 'simulated' | 'ibja' | 'mcx' | 'rapid_api';
 }
 
 // ---- Karatage --------------------------------------------------
