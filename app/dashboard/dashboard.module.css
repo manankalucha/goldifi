@@ -1,0 +1,19 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-dark);
+}
+
+.mainContent {
+  flex: 1;
+  margin-left: 260px; /* offset for fixed sidebar */
+  padding: var(--space-8) var(--space-10);
+  background: var(--bg-dark);
+}
+
+@media (max-width: 900px) {
+  .mainContent {
+    margin-left: 0;
+    padding: var(--space-6) var(--space-4);
+  }
+}

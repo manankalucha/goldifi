@@ -1,0 +1,133 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  background: var(--error-bg);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: var(--error);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-6);
+  font-size: var(--text-sm);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: rgba(0,0,0,0.2);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cardHeader h3 {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.iconGold {
+  color: var(--gold-400);
+}
+
+.iconBlue {
+  color: var(--info);
+}
+
+.cardBody {
+  padding: var(--space-5);
+}
+
+.row {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.row > * {
+  flex: 1;
+}
+
+.resultBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-elevated);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.highlight {
+  font-family: 'Outfit', sans-serif;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--gold-400);
+}
+
+.toggleRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  cursor: pointer;
+}
+
+.checkbox {
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--gold-400);
+}
+
+.toggleLabel {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  display: block;
+}
+
+.toggleDesc {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.indent {
+  margin-top: var(--space-4);
+  margin-left: 30px;
+}
+
+.footer {
+  margin-top: var(--space-8);
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-6);
+}
+
+.mb-4 {
+  margin-bottom: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+  .footer { justify-content: center; }
+  .footer .btn { width: 100%; justify-content: center; }
+}

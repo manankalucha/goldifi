@@ -1,0 +1,118 @@
+.wrapper {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-6);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.liveIndicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.liveDot {
+  width: 7px;
+  height: 7px;
+  background: var(--success);
+  border-radius: 50%;
+  animation: pulse-gold 1.5s infinite;
+  box-shadow: 0 0 6px var(--success);
+}
+
+.liveLabel {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.simLabel {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.timestamp {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.tickerTrack {
+  overflow: hidden;
+  padding: var(--space-3) 0;
+}
+
+.ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker-slide 30s linear infinite;
+}
+
+.ticker:hover {
+  animation-play-state: paused;
+}
+
+.tickerItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0 var(--space-6);
+  white-space: nowrap;
+}
+
+.tickerLabel {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--text-secondary);
+  font-family: 'Outfit', sans-serif;
+}
+
+.tickerValue {
+  font-size: var(--text-base);
+  font-weight: 800;
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Outfit', sans-serif;
+}
+
+.tickerSub {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.separator {
+  color: var(--border-strong);
+  margin-left: var(--space-3);
+}
+
+/* Skeleton */
+.skeleton {
+  display: flex;
+  gap: var(--space-6);
+  padding: 0 var(--space-6);
+}
+
+.skeletonItem {
+  width: 140px;
+  height: 24px;
+  background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-elevated) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}

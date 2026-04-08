@@ -1,0 +1,30 @@
+{
+  "name": "goldify",
+  "version": "1.0.0",
+  "description": "Phygital pre-owned jewelry valuation and liquidation platform",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "firebase": "^11.6.0",
+    "framer-motion": "^12.6.3",
+    "html5-qrcode": "^2.3.8",
+    "lucide-react": "^0.511.0",
+    "next": "14.2.29",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "recharts": "^2.15.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.1.1",
+    "@types/react-dom": "^19.1.2",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.29",
+    "typescript": "^5.8.3"
+  }
+}

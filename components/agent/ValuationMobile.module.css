@@ -1,0 +1,124 @@
+.container {
+  padding: var(--space-2) 0;
+  animation: fadeIn 0.3s ease;
+}
+
+.title {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: var(--text-muted);
+}
+
+.gpsBox {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--bg-card);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: var(--space-6);
+  font-size: var(--text-sm);
+}
+
+.gpsBox strong {
+  display: block;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.successTxt {
+  color: var(--success);
+}
+
+.errorTxt {
+  color: var(--error);
+}
+
+.errorPanel {
+  background: var(--error-bg);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: var(--error);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-base);
+}
+
+.card h3 {
+  font-size: var(--text-base);
+  color: var(--gold-400);
+  margin-bottom: var(--space-4);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--text-sm);
+}
+
+.scannerPrompt {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.bagInputBox {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--bg-input);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.bagInput {
+  background: transparent;
+  border: none;
+  flex: 1;
+  color: var(--text-primary);
+  outline: none;
+  font-family: monospace;
+}
+
+.submitBtn {
+  width: 100%;
+}

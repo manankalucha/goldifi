@@ -1,0 +1,61 @@
+.scannerWrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-4);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.header h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px;
+}
+
+.closeBtn:hover {
+  color: var(--error);
+}
+
+.readerContainer {
+  padding: var(--space-4);
+}
+
+.reader {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  width: 100%;
+}
+
+.hint {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-top: var(--space-3);
+}
+
+.error {
+  padding: var(--space-4);
+  color: var(--error);
+  text-align: center;
+  font-size: var(--text-sm);
+}

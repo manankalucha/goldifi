@@ -1,0 +1,69 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper: Is the user logged in?
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Helper: Get user data (role)
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    // Helper: Check Role
+    function hasRole(role) {
+      return isSignedIn() && getUserData().role == role;
+    }
+
+    function isAdmin() {
+      return hasRole('admin');
+    }
+
+    function isStaff() {
+      return hasRole('admin') || hasRole('operator') || hasRole('agent');
+    }
+
+    // Users collection: Private per user, Admins can read all users
+    match /users/{userId} {
+      allow read, write: if request.auth.uid == userId || isAdmin();
+    }
+
+    // Appointments: 
+    // - Customers can create
+    // - Staff can read/update assigned stops
+    match /appointments/{apptId} {
+      allow create: if true; 
+      allow read, update: if isStaff();
+      allow delete: if isAdmin();
+    }
+
+    // Customers (KYC): Only staff visible
+    match /customers/{customerId} {
+      allow read, write: if isStaff();
+    }
+
+    // Valuations: Staff only
+    match /valuations/{valId} {
+      allow read, write: if isStaff();
+    }
+
+    // Inventory: Admin only (Staff can read summaries but not edit inventory directly outside flow)
+    match /inventory/{itemId} {
+      allow read: if isStaff();
+      allow write: if isAdmin();
+    }
+
+    // Refinery Batches: Admin only
+    match /refinery_batches/{batchId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Gold Rates: Public read, Admin write
+    match /goldRates/{rateId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

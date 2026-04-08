@@ -1,0 +1,104 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.inputSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.weightRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--gold-400) 0%, var(--bg-elevated) 0%);
+  outline: none;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gradient-gold);
+  cursor: pointer;
+  box-shadow: var(--shadow-gold-sm);
+  border: 2px solid var(--bg-dark);
+  transition: box-shadow var(--transition-fast);
+}
+
+.slider::-webkit-slider-thumb:hover {
+  box-shadow: var(--shadow-gold);
+}
+
+.weightInput {
+  width: 100px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.weightHint {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: var(--space-1);
+}
+
+.rateInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+.rateDot {
+  width: 7px;
+  height: 7px;
+  background: var(--success);
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px var(--success);
+  animation: pulse-gold 1.5s infinite;
+}
+
+.calcBtn {
+  width: 100%;
+}
+
+.ctaBox {
+  background: var(--gradient-gold-subtle);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.ctaBox p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.ctaBox .btn {
+  align-self: flex-start;
+}
