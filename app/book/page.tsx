@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import LocationSelector from '@/components/booking/LocationSelector';
+import AddressPicker from '@/components/booking/AddressPicker';
 import DateTimePicker from '@/components/booking/DateTimePicker';
 import BookingConfirmation from '@/components/booking/BookingConfirmation';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
@@ -200,13 +201,7 @@ export default function BookPage() {
                 ) : (
                   <div className="form-group slideDown">
                     <label className="form-label">Exact Home Address</label>
-                    <textarea 
-                      className="form-input" 
-                      rows={3} 
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                      placeholder="e.g. Flat 402, Block B, Silver Oaks, Sector 15..."
-                    />
+                    <AddressPicker value={address} onChange={setAddress} />
                   </div>
                 )}
                 
