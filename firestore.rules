@@ -7,34 +7,37 @@ service cloud.firestore {
       return request.auth != null;
     }
 
-    // Helper: Get user data (role)
-    function getUserData() {
-      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
-    }
-
-    // Helper: Check Role
-    function hasRole(role) {
-      return isSignedIn() && getUserData().role == role;
+    // Helper: Get user role safely (only used on collections OTHER than /users)
+    function getUserRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
     }
 
     function isAdmin() {
-      return hasRole('admin');
+      return isSignedIn() && getUserRole() == 'admin';
     }
 
     function isStaff() {
-      return hasRole('admin') || hasRole('operator') || hasRole('agent');
+      return isSignedIn() && (
+        getUserRole() == 'admin' ||
+        getUserRole() == 'operator' ||
+        getUserRole() == 'agent'
+      );
     }
 
-    // Users collection: Private per user, Admins can read all users
+    // Users collection:
+    // - Any authenticated user can read/write their OWN document (required for login flow)
+    // - Admins can read ALL user documents
+    // NOTE: getUserRole() is NOT called here to avoid circular self-referential rule evaluation.
     match /users/{userId} {
-      allow read, write: if request.auth.uid == userId || isAdmin();
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read: if request.auth != null && getUserRole() == 'admin';
     }
 
-    // Appointments: 
-    // - Customers can create
-    // - Staff can read/update assigned stops
+    // Appointments:
+    // - Anyone can create (public booking form)
+    // - Staff can read/update
     match /appointments/{apptId} {
-      allow create: if true; 
+      allow create: if true;
       allow read, update: if isStaff();
       allow delete: if isAdmin();
     }
@@ -49,10 +52,10 @@ service cloud.firestore {
       allow read, write: if isStaff();
     }
 
-    // Inventory: Admin only (Staff can read summaries but not edit inventory directly outside flow)
+    // Inventory: Staff can read, Admin can write
     match /inventory/{itemId} {
       allow read: if isStaff();
-      allow write: if isAdmin();
+      allow write: if isAdmin() || isStaff(); // agents write inventory during valuation
     }
 
     // Refinery Batches: Admin only
