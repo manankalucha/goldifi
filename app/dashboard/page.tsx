@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Appointment } from '@/types';
 import { subscribeToCollection, where, orderBy } from '@/lib/firebase/firestore';
 import { Calendar, UserPlus, Microscope, Search, ArrowRight } from 'lucide-react';
+import { KIOSK_LOCATIONS } from '@/components/booking/LocationSelector';
 import styles from './page.module.css';
 
 export default function DashboardHome() {
@@ -91,6 +92,7 @@ export default function DashboardHome() {
                     <th>Time</th>
                     <th>Customer Name</th>
                     <th>Contact</th>
+                    <th>Type & Location</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -103,6 +105,21 @@ export default function DashboardHome() {
                         <td className={styles.timeCol}>{time}</td>
                         <td className={styles.nameCol}>{appt.customerName}</td>
                         <td className={styles.contactCol}>{appt.customerPhone}</td>
+                        <td>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                            <span 
+                              className={`badge ${appt.serviceType === 'kiosk' ? 'badge-primary' : 'badge-info'}`} 
+                              style={{ width: 'fit-content' }}
+                            >
+                              {appt.serviceType === 'kiosk' ? 'Visit Kiosk' : 'At-Home Service'}
+                            </span>
+                            <span style={{ fontSize: '13px', color: 'var(--text-secondary)', maxWidth: '250px', display: 'block', lineHeight: 1.4 }}>
+                              {appt.serviceType === 'kiosk' 
+                                ? KIOSK_LOCATIONS.find(k => k.id === appt.kioskLocation)?.name || appt.kioskLocation 
+                                : appt.customerAddress}
+                            </span>
+                          </div>
+                        </td>
                         <td>
                           <span className="badge badge-pending">Pending</span>
                         </td>
