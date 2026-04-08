@@ -113,11 +113,29 @@ export default function DashboardHome() {
                             >
                               {appt.serviceType === 'kiosk' ? 'Visit Kiosk' : 'At-Home Service'}
                             </span>
-                            <span style={{ fontSize: '13px', color: 'var(--text-secondary)', maxWidth: '250px', display: 'block', lineHeight: 1.4 }}>
-                              {appt.serviceType === 'kiosk' 
-                                ? KIOSK_LOCATIONS.find(k => k.id === appt.kioskLocation)?.name || appt.kioskLocation 
-                                : appt.customerAddress}
-                            </span>
+                            {appt.serviceType === 'kiosk' ? (
+                              <span style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
+                                {KIOSK_LOCATIONS.find((k) => k.id === appt.kioskLocation)?.name || appt.kioskLocation}
+                              </span>
+                            ) : (
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                <span 
+                                  style={{ fontSize: '13px', color: 'var(--text-secondary)', maxWidth: '150px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                                  title={appt.customerAddress}
+                                >
+                                  {appt.customerAddress}
+                                </span>
+                                <a 
+                                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(appt.customerAddress || '')}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="btn btn-ghost"
+                                  style={{ padding: '2px 8px', fontSize: '11px', height: '24px', minHeight: '24px', display: 'inline-flex', alignItems: 'center', gap: '4px', background: 'rgba(212, 160, 23, 0.1)', color: 'var(--gold)', border: '1px solid rgba(212, 160, 23, 0.2)' }}
+                                >
+                                  Map <ArrowRight size={10} />
+                                </a>
+                              </div>
+                            )}
                           </div>
                         </td>
                         <td>
