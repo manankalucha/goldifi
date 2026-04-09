@@ -114,6 +114,3 @@ goldify/
 By using this software, you acknowledge:
 *   **Data Security:** Proper configuration of `.env.local` and application of `firestore.rules` and `storage.rules` are required to maintain user data privacy in production.
 *   **Valuation Accuracy:** The estimates provided by the tool are indicative and subject to physical verification and real-time market fluctuations.
-
-## License
-MIT
